@@ -1,4 +1,4 @@
-# <p align="center"> Docker-Image-Optimization
+![image](https://github.com/user-attachments/assets/0f885ebe-fd18-4ab6-83b7-e7dd71a65168)# <p align="center"> Docker-Image-Optimization
 ### 도커 이미지 최적화 실습
 ---
 
@@ -67,17 +67,38 @@ CMD ["java", "Main"]
 openjdk:17 (27.3s) -> 17-jdk-alpine (22.8s)
 <br>
 
-### case 2. 최적화 후 도커 이미지 생성
+----
+### case 2. .dockerignore 파일 사용
 
-### case 3. 최적화 후 도커 이미지 생성
+#### Dockerfile
+```
+FROM openjdk:17
+COPY . /usr/src/myapp
+WORKDIR /usr/src/myapp
+RUN javac Main.java
+CMD ["java", "Main"]
+```
 
-#### 2.1. Muilti-Stage Builds
+#### .dockerignore
+```
+largefile.bin
+Main.class
+```
+
+#### build 결과
+![image](https://github.com/user-attachments/assets/1c9e7a6b-fb73-401d-aa92-79deec2149c6)
+![image](https://github.com/user-attachments/assets/97660c8c-97fa-429c-bb24-b2365c582a80)
+
+#### 결론
+.dockerignore 파일을 사용해 불필요한 소스를 이미지에 포함시키지 않은 결과, <br>
+빌드 시간과 이미지 사이즈가 줄어든 것 을 확인함
+
+<br>
 
 
-#### 2.2. Minimize Layers
+### case 3. multi-stage 사용
 
 
-#### 2.3. .dockerignore 
 
 
 ## 참고 자료
