@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0f885ebe-fd18-4ab6-83b7-e7dd71a65168)# <p align="center"> Docker-Image-Optimization
+# <p align="center"> Docker-Image-Optimization
 ### 도커 이미지 최적화 실습
 ---
 
