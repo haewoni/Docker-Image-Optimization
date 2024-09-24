@@ -146,5 +146,5 @@ COPY명령어를 통해 복사하여 최종 이미지에 필수적인 파일들�
 ## 참고 자료
 https://overcast.blog/docker-image-optimization-tips-tricks-6a17f687162b <br>
 https://faun.pub/reduce-the-size-of-the-docker-image-e6895b653419
-chrome-extension://cpmmilfkofbeimbmgiclohpodggeheim/elasticsearch-head/index.html
+https://www.linkedin.com/pulse/optimize-docker-builds-rohit-kumar-shaw/
 
