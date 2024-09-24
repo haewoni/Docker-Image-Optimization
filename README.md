@@ -98,6 +98,16 @@ Main.class
 
 ### case 3. multi-stage 사용
 
+### 실습환경 
+
+```
+git clone https://github.com/code-rks/docker-demo.git
+cd docker-demo/
+
+출처: https://www.linkedin.com/pulse/optimize-docker-builds-rohit-kumar-shaw/
+```
+
+
 ### Dockerfile.v1
 ```
 FROM node:18 as build
@@ -112,7 +122,8 @@ CMD ["serve", "-s", "build", "-l", "3000"]
 
 Dockerfile.v1 파일은 현재
 build stage만으로 구성 되어 있습니다.
-정상적으로 프로젝트 빌드를 진행하지만 production환경에 필요없는 빌드 결과물도 복사되며
+정상적으로 프로젝트 빌드를 진행하지만
+production환경에 필요없는 빌드 결과물도 복사되며
 이미지 파일의 용량을  증가시킵니다.
 
 
@@ -133,9 +144,12 @@ EXPOSE 5000
 CMD ["serve","-s","build","-l","5000"]
 ```
 
-Dockerfile.v2 파일의 경우 main 스테이지가 추가되었습니다.
-main stage에서는 Build 과정을 완료한 이후 production 환경에 필수적인 파일들만
-COPY명령어를 통해 복사하여 최종 이미지에 필수적인 파일들만 포함되도록 하였습니다
+Dockerfile.v2 파일의 경우 
+main 스테이지가 추가되었습니다.
+main stage에서는 Build 과정을 완료한 이후
+production 환경에 필수적인 파일들만
+COPY명령어를 통해 복사하여
+최종 이미지에 필수적인 파일들만 포함되도록 하였습니다
 
 
 #### 이미지 생성 후 size 비교 
@@ -145,6 +159,6 @@ COPY명령어를 통해 복사하여 최종 이미지에 필수적인 파일들�
 
 ## 참고 자료
 https://overcast.blog/docker-image-optimization-tips-tricks-6a17f687162b <br>
-https://faun.pub/reduce-the-size-of-the-docker-image-e6895b653419
-https://www.linkedin.com/pulse/optimize-docker-builds-rohit-kumar-shaw/
+https://faun.pub/reduce-the-size-of-the-docker-image-e6895b653419 <br>
+https://www.linkedin.com/pulse/optimize-docker-builds-rohit-kumar-shaw/ <br>
 
