@@ -1,0 +1,13 @@
+FROM node:18 as build
+WORKDIR /usr/code
+COPY package* .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:alpine as main
+WORKDIR /usr/code
+COPY --from=build /usr/code/build /usr/code/build
+RUN npm i -g serve
+EXPOSE 5000
+CMD ["serve","-s","build","-l","5000"]

@@ -1,0 +1,32 @@
+PS E:\Project\docker> docker build -t dev/docker:v1 --no-cache -f Dockerfile.v1 .
+[+] Building 111.7s (12/12) FINISHED
+ => [internal] load build definition from Dockerfile.v1                                                                                  0.0s 
+ => => transferring dockerfile: 220B                                                                                                     0.0s 
+ => [internal] load .dockerignore                                                                                                        0.1s 
+ => [internal] load metadata for docker.io/library/node:18                                                                              12.5s 
+ => [auth] library/node:pull token for registry-1.docker.io                                                                              0.0s 
+ => [1/6] FROM docker.io/library/node:18@sha256:671ee8d49ce2a691fc3082203c5deb9522e0c80042aa0ff40c07f4a25e63668a                         0.0s 
+ => [internal] load build context                                                                                                        0.0s 
+ => => transferring context: 1.36kB                                                                                                      0.0s 
+ => CACHED [2/6] WORKDIR /usr/code                                                                                                       0.0s 
+ => [3/6] COPY package* .                                                                                                                0.1s 
+ => [4/6] RUN npm install && npm i -g serve                                                                                             55.0s 
+ => [5/6] COPY . .                                                                                                                       0.2s 
+ => [6/6] RUN npm run build                                                                                                             31.2s 
+ => exporting to image                                                                                                                  12.3s 
+ => => exporting layers                                                                                                                 12.2s 
+ => => writing image sha256:025d1cd657d332e8101fb30dcdaf0b411da4e392f06a706c449396c53c443316                                             0.0s 
+ => => naming to docker.io/dev/docker:v1                                                                                                 0.0s 
+PS E:\Project\docker> docker image ls
+dev/docker                           v1                                                      025d1cd657d3   17 minutes ago   1.36GB
+codeenv_demoapp                      latest                                                  4d497cb6d26a   4 weeks ago      195MB
+statichostingdemo_staticbuildserve   latest                                                  f9535c1e39b8   2 months ago     192MB
+docker/desktop-kubernetes            kubernetes-v1.22.4-cni-v0.8.5-critools-v1.17.0-debian   493a106d3678   17 months ago    294MB
+docker/desktop-storage-provisioner   v2.0                                                    99f89471f470   24 months ago    41.9MB
+k8s.gcr.io/kube-proxy                v1.19.7                                                 9d368f4517bb   2 years ago      118MB
+k8s.gcr.io/kube-apiserver            v1.19.7                                                 c15e4f843f01   2 years ago      119MB
+k8s.gcr.io/kube-scheduler            v1.19.7                                                 4fa642720eea   2 years ago      45.6MB
+k8s.gcr.io/kube-controller-manager   v1.19.7                                                 67b3bca112d1   2 years ago      111MB
+k8s.gcr.io/etcd                      3.4.13-0                                                0369cf4303ff   2 years ago      253MB
+k8s.gcr.io/coredns                   1.7.0                                                   bfe3a36ebd25   2 years ago      45.2MB
+k8s.gcr.io/pause                     3.2                                                     80d28bedfe5d   3 years ago      683kB
