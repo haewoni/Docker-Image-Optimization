@@ -98,10 +98,53 @@ Main.class
 
 ### case 3. multi-stage 사용
 
+### Dockerfile.v1
+```
+FROM node:18 as build
+WORKDIR /usr/code
+COPY package* .
+RUN npm install && npm i -g serve
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["serve", "-s", "build", "-l", "3000"]
+```
+
+Dockerfile.v1 파일은 현재
+build stage만으로 구성 되어 있습니다.
+정상적으로 프로젝트 빌드를 진행하지만 production환경에 필요없는 빌드 결과물도 복사되며
+이미지 파일의 용량을  증가시킵니다.
+
+
+### Dockerfile.v2
+```
+FROM node:18 as build
+WORKDIR /usr/code
+COPY package* .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:alpine as main
+WORKDIR /usr/code
+COPY --from=build /usr/code/build /usr/code/build
+RUN npm i -g serve
+EXPOSE 5000
+CMD ["serve","-s","build","-l","5000"]
+```
+
+Dockerfile.v2 파일의 경우 main 스테이지가 추가되었습니다.
+main stage에서는 Build 과정을 완료한 이후 production 환경에 필수적인 파일들만
+COPY명령어를 통해 복사하여 최종 이미지에 필수적인 파일들만 포함되도록 하였습니다
+
+
+#### 이미지 생성 후 size 비교 
+![image](https://github.com/user-attachments/assets/7a2cc2d4-27d2-4bbe-b3e0-fcb844f14c1f)
 
 
 
 ## 참고 자료
 https://overcast.blog/docker-image-optimization-tips-tricks-6a17f687162b <br>
 https://faun.pub/reduce-the-size-of-the-docker-image-e6895b653419
+chrome-extension://cpmmilfkofbeimbmgiclohpodggeheim/elasticsearch-head/index.html
 
